@@ -1,7 +1,6 @@
 PREFIX := $(HOME)/.local
 
-all: qbe/qbe harec/build/harec hare/.bin/hare
-
+all: scdoc/scdoc qbe/qbe harec/build/harec hare/.bin/hare
 
 qbe:
 	@mkdir -p $@
@@ -25,7 +24,7 @@ harec/build/harec: harec qbe/qbe
 hare:
 	@git -C $@ pull --rebase || git clone --depth 1 https://git.sr.ht/~sircmpwn/hare
 
-hare/config.mk:
+hare/config.mk: hare
 	@sed 's:^PREFIX =.*$$:PREFIX = $(PREFIX):;s:^HAREC =.*$$:HAREC = $(CURDIR)/harec/build/harec:;s:^QBE =.*$$:QBE = $(CURDIR)/qbe/qbe:;s:^SCDOC =.*$$:SCDOC = $(CURDIR)/scdoc/scdoc:' hare/config.example.mk > $@
 
 hare/.bin/hare: hare/config.mk harec/build/harec
@@ -35,19 +34,20 @@ hare/.bin/hare: hare/config.mk harec/build/harec
 scdoc:
 	git -C $@ pull --rebase || git clone --depth 1 https://git.sr.ht/~sircmpwn/scdoc
 
-scdoc/scdoc:
+scdoc/scdoc: scdoc
 	$(MAKE) -s -C $(@D) PREFIX=$(PREFIX)
 
 
 install: all
+	@$(MAKE) -s -C scdoc PREFIX=$(PREFIX) $@
 	@$(MAKE) -s -C qbe PREFIX=$(PREFIX) $@
 	@$(MAKE) -s -C harec/build $@
 	@$(MAKE) -s -C hare $@
 
 uninstall:
+	@$(MAKE) -s -C scdoc PREFIX=$(PREFIX) $@
 	@$(MAKE) -s -C hare $@
-	@$(MAKE) -s -C harec/build $@
-	@rm -f -- $(PREFIX)/qbe
+	@rm -f -- $(PREFIX)/bin/qbe $(PREFIX)/bin/harec
 
 
 clean:
