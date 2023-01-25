@@ -24,6 +24,7 @@ It bootstraps [qbe](https://c9x.me/compile/), [harec](https://git.sr.ht/~sircmpw
 
 	# ~/.local
 	make install
+	printf 'HAREPATH=~/.local/src/hare/stdlib:~/.local/src/hare/third-party:/usr/local/src/hare/stdlib:/usr/local/src/hare/third-party\nexport HAREPATH\n' >> ~/.profile
 
 	# system wide
 	make
