@@ -19,9 +19,15 @@ Install and Update Hare
 =======================
 
 Wrapper script to get <https://harelang.org/> up and running from source.
-It bootstraps `qbe`, `harec` and `sdc` from source, too.
+It bootstraps [qbe](https://c9x.me/compile/), [harec](https://git.sr.ht/~sircmpwn/harec) and
+[sdc](https://sr.ht/~sircmpwn/scdoc/) from source, too.
 
+	# ~/.local
 	make install
+
+	# system wide
+	make
+	sudo make PREFIX=/usr/local install
 
 
 Contribution welcome
