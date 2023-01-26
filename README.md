@@ -15,12 +15,21 @@ But there is also always some reason in madness.
 [Nietzsche]
 
 
-Install and Update Hare
-=======================
+About
+=====
 
 Wrapper script to get <https://harelang.org/> up and running from source.
-It bootstraps [qbe](https://c9x.me/compile/), [harec](https://git.sr.ht/~sircmpwn/harec),
-[sdc](https://sr.ht/~sircmpwn/scdoc/) and [hare-ssh](https://git.sr.ht/~sircmpwn/hare-ssh) from source, too.
+It bootstraps the following packages from source.
+
+- [qbe](https://c9x.me/compile/)
+- [scdoc](https://sr.ht/~sircmpwn/scdoc/)
+- [harec](https://git.sr.ht/~sircmpwn/harec)
+- [hare](https://git.sr.ht/~sircmpwn/harec)
+- [hare-ssh](https://git.sr.ht/~sircmpwn/hare-ssh)
+
+
+Install and Update Hare
+=======================
 
 	# ~/.local
 	make install
